@@ -1,0 +1,60 @@
+<!doctype html>
+<html ng-app="helloApp" >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CognizantTimeTracker</title><link rel="stylesheet" href="css/styles.css" type="text/css" />
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<!--
+budding, a free CSS web template by ZyPOP (zypopwebtemplates.com/)
+
+Download: http://zypopwebtemplates.com/
+
+License: Creative Commons Attribution
+//-->
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+<link rel="stylesheet"
+	src="./bootstrap.min.css">
+<script
+	src="./jquery.min.js"></script>
+<script
+	src="./bootstrap.min.js"></script>
+
+<script src="JS/script.js"></script>
+    
+    	
+</head>
+
+			
+			
+<body ng-controller="CompanyCtrl">
+NAME <input type=text placeholder="search companies" ng-model="searchText">
+<table class="table">
+	<tr>
+		<th>Name
+		</th>
+		<th>Employees
+		</th>
+		<th>Head Office
+		</th>
+		<th>Action
+		</th>
+	</tr>
+	<tr ng-repeat="company in companies  | filter: searchText ">
+		<td>{{company.name}}
+		</td>
+		<td>{{company.employees}}
+		</td>
+		<td>{{company.headoffice}}
+		</td>
+		<td>
+		<input type="button" value="Remove" class="btn btn-primary" ng-click="removeRow(company.name)"/>
+		</td>
+	</tr>
+</table>
+		
+</body>
+</html>
+	
