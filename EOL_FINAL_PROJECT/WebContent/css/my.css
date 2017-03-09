@@ -1,0 +1,83 @@
+#menu {
+  list-style:none;
+  padding:0;
+  text-align:center;
+}
+
+.link {
+  display:inline-block;
+  width:24%;
+  vertical-align:top;
+  position:relative;
+}
+
+.linkName {
+  padding:10px 5px;
+  text-decoration:none;
+  color:black;
+  display:block;
+  cursor:pointer;
+}
+
+
+input, label {
+    float:left;
+    margin:5px;
+}
+
+table, th, td {
+    border: 0;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 15px;
+}
+
+.linkName:hover, .highlight {
+  background-color:lightgray;
+}
+
+.submenu {
+  width:99.5%;
+  padding:0;
+  list-style:none;
+  border-left:1px solid black;
+  border-right:1px solid black;
+  border-bottom:1px solid black;
+  text-align:left;
+  display:none;
+  position:absolute;
+  background-color:white;
+}
+
+.sublink {
+  margin:7px 10px;
+  cursor:pointer;
+}
+
+
+
+.gridStyle {
+    border: 2px solid rgb(212,212,212);
+    width: 800px; 
+    height: 400px
+}
+
+
+.green {
+    background-color: green;
+    color: white;
+}
+
+
+.grid {
+
+   border: 2px solid rgb(212,212,212);
+    width: 1200px; 
+    height: 400px
+}
+
+.grey .ui-grid-cell-contents
+{
+  background-color:#CD5C5C;
+}

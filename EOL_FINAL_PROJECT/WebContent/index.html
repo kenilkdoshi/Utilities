@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+   <title>EOL</title>
+   <head>
+   
+   
+   
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="http://ui-grid.info/release/ui-grid.js"></script>
+<link rel="stylesheet" href="http://ui-grid.info/release/ui-grid.css" type="text/css">
+   
+   <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+     <link href="./js/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script src="./js/jquery.min.js"></script>
+<script src="./js/jquery-ui.min.js"></script>
+ 
+ 
+  
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+      <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+      
+       
+       <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
+        <link rel="stylesheet" href="http://ui-grid.info/release/ui-grid-unstable.css" type="text/css">
+   
+      
+       <script src="./js/controller.js"></script>
+   
+<link href="./css/my.css" rel="stylesheet" />
+
+<link rel="stylesheet" type="text/css" href="./js/ng-grid.min.css" />
+      <script src="./js/ng-grid-2.0.11.min.js"></script> 
+  
+     
+        <script src="http://ui-grid.info/docs/grunt-scripts/csv.js"></script>
+    <script src="http://ui-grid.info/docs/grunt-scripts/pdfmake.js"></script>
+    <script src="http://ui-grid.info/docs/grunt-scripts/vfs_fonts.js"></script>
+    <script src="http://ui-grid.info/release/ui-grid-unstable.js"></script>
+    <link rel="stylesheet" href="http://ui-grid.info/release/ui-grid-unstable.css" type="text/css">
+   
+   
+    
+     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-touch.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-animate.js"></script>
+
+
+   </head>
+   
+   <body>
+  
+      <div class="container">
+      <h1 align="center"><b>EOL PILOT</b></h1>
+         
+         <section ng-app="app" ng-controller="TabController as tab">
+             
+             <ul class="nav nav-pills" id="menu">
+
+                 <li class="link" ng-class="{active:tab.isSet(0)}"><a href ng-click="#">TRADES</a>  
+	                 <ul class="submenu">
+					        <li class="sublink"  ng-class="{active:tab.isSet(1)}">
+					           <a href ng-click="tab.setTab(1)">Monitors</a>
+					        </li>
+					         <li class="sublink" ng-class="{active:tab.isSet(0)}">
+					            <a href ng-click="tab.setTab(0)">Details</a>
+					        </li>  
+	             	 </ul>
+     			 </li>
+     			 
+               <li  class="link"  ng-class="{active:tab.isSet(2)}"><a href ng-click="tab.setTab(2)">Reports</a></li>
+             </ul>
+
+      <hr>
+      <div ng-show="tab.isSet(0)">
+       		<h4></h4>
+      </div>
+      
+      <div ng-show="tab.isSet(1)">
+     	    <div ng-include="'monitors.html'"></div>
+      </div>
+      
+      <div ng-show="tab.isSet(2)">
+         	<h4>No description found</h4>
+      </div>
+      
+         </section>
+      </div>
+
+   </body>
+
+</html>
