@@ -59,37 +59,34 @@ myApp.controller("CompanyCtrl", ['$scope', '$http', '$interval', '$modal', '$log
 
 	$scope.myAppScopeProvider = {
 
-		      showInfo : function(row) {
-		           var modalInstance = $modal.open({
-		                controller: 'InfoController',
-		                templateUrl: 'ngTemplate/infoPopup.html',
-		                resolve: {
-		                  selectedRow: function () {                    
-		                      return row.entity;
-		                  }
-		          
-		                }
-		           });
-		           
-		           modalInstance.result.then(function (selectedItem) {
+								      showInfo : function(row) {
+								           var modalInstance = $modal.open({
+								                controller: 'InfoController',
+								                templateUrl: 'ngTemplate/infoPopup.html',
+								                resolve: {
+								                  selectedRow: function () {                    
+								                      return row.entity;
+								                  }
+								          
+								                }
+								    });
+								           
+   modalInstance.result.then(function (selectedItem) {
 		             $log.log('modal selected Row: ' + selectedItem);
 		           }, function () {
 		             $log.info('Modal dismissed at: ' + new Date());
 		           });
 		      },
 	rowFormatter :function( row ) {
-		    
-		    return row.entity.Status === 'ERR'; 
+		     return row.entity.Status === 'ERR'; 
 		  }
 		  }
 	
 	  function rowTemplate() {
-	    return '<div ng-class="{ \'grey\':grid.appScope.rowFormatter( row ) }">'+'<div ng-dblclick="grid.appScope.showInfo(row)" >' +
+	           return '<div ng-class="{ \'grey\':grid.appScope.rowFormatter( row ) }">'+'<div ng-dblclick="grid.appScope.showInfo(row)" >' +
 	                 '  <div ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell"   ui-grid-cell></div>' +
 	                 '</div>';
 	  }
-	
-	
 	
 	
 
@@ -148,7 +145,6 @@ myApp.controller("CompanyCtrl", ['$scope', '$http', '$interval', '$modal', '$log
 	    $scope.selectedSubscriber='';
 	    $scope.var1='';
 	      
-
 		   $scope.filterOptions = {
 				    filterText: '',
 				    useExternalFilter: true
@@ -161,7 +157,6 @@ myApp.controller("CompanyCtrl", ['$scope', '$http', '$interval', '$modal', '$log
 			        currentPage: 1
 			    };  
 		   
-		  
 		   $scope.setPagingData = function(data, page, pageSize){	
 		        var pagedData = data.slice((page - 1) * pageSize, page * pageSize);
 		        $scope.myData1 = pagedData;
@@ -206,9 +201,7 @@ myApp.controller("CompanyCtrl", ['$scope', '$http', '$interval', '$modal', '$log
 		   
 		   
 		   
-		
-	   
-			  $scope.activateFilter = function() 
+			$scope.activateFilter = function() 
 			  {
 			    var Subscriber = $scope.filterSubscriber || null;
 			    var Todate = ($scope.filterTodate) ? $scope.filterTodate.toString() : null;
@@ -258,11 +251,9 @@ myApp.controller("CompanyCtrl", ['$scope', '$http', '$interval', '$modal', '$log
 			    
 			  
 			  
-		
 
 			  $scope.filterData = angular.copy($scope.myData, []);
-			  
-			  
+			    
 			  $scope.gridOptions = {
 					  paginationPageSizes:[5, 10, 15],
 					   paginationPageSize: 10,
@@ -273,8 +264,6 @@ myApp.controller("CompanyCtrl", ['$scope', '$http', '$interval', '$modal', '$log
 				        showFooter: true,
 				        enableSorting: true,
 					    multiSelect: false,
-					      
-					    
 					        
 					    enableRowSelection: true, 
 					    enableSelectAll: false,
@@ -287,103 +276,17 @@ myApp.controller("CompanyCtrl", ['$scope', '$http', '$interval', '$modal', '$log
 				      grid = gridApi;
 				    },
 				    data:'filterData',
-				    rowTemplate: rowTemplate(),
-				       /* '<div ng-class="{ \'grey\':grid.appScope.rowFormatter( row ) }">' +
-				                 '  <div ng-dblclick="grid.appScope.showInfo(row)" ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ng-class="{ \'ui-grid-row-header-cell\': col.isRowHeader }"  ui-grid-cell></div>' +
-				                 '</div>'
-			                ,*/
-				    
+				    rowTemplate: rowTemplate()
+				       
 				}
 
-				  /* Access outside scope functions from row template
-				  $scope.rowFormatter = function( row ) {
-				    
-				    return row.entity.Snum === '2'; 
-				  };
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-			  
-	   /*$scope.gridOptions = { data: 'filterData',
-			   paginationPageSizes:[10, 20, 30],
-			   paginationPageSize: 10,
-			   paginationOptions: $scope.pagingOptions,
-			   filterOptions: $scope.filteroptions ,
-			   enablePaging: true,
-			   
-		        showFooter: true,
-		        enableSorting: true,
-			    multiSelect: false,
-			      
-			    
-			        
-			    enableRowSelection: true, 
-			    enableSelectAll: false,
-			    enableRowHeaderSelection: false,
-			    selectionRowHeaderWidth: 35,  
-			    noUnselect: true,
-			    enableGridMenu: true,
-			 
-			    
-			    appScopeProvider: $scope.myAppScopeProvider,
-			 //   rowTemplate: "<div ng-dblclick=\"grid.appScope.showInfo(row)\" ng-repeat=\"(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name\" class=\"ui-grid-cell\" ng-class=\"{ 'ui-grid-row-header-cell': col.isRowHeader }\" ui-grid-cell></div>"
-			    onRegisterApi: function(gridApi){ 
-				      $scope.gridApi = gridApi;
-				    },
-		        /*
-			   rowTemplate:"<div ng-dblclick=\"grid.appScope.showInfo(row)\" ng-repeat=\"(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name\" class=\"ui-grid-cell\" ng-class=\"{ 'ui-grid-row-header-cell': col.isRowHeader }\" ui-grid-cell></div> " + 
-			   '  <div style="height: 100%" ng-class="{green: row.getProperty(\'Status\') == 1}"><div ng-style="{ \'cursor\': row.cursor }" ng-repeat="col in renderedColumns" ng-class="col.colIndex()" class="ngCell ">' +
-	           '<div class="ngVerticalBar" ng-style="{height: rowHeight}" ng-class="{ ngVerticalBarVisible: !$last }"> </div>' +
-	            '<div ng-cell></div>' +
-	     '</div></div>'*/
-				    
-				  /*  rowTemplate:
-				    '<div ng-class="{ \'grey\':grid.appScope.rowFormatter( row ) }">' +
-	                 '  <div ng-repeat="(colRenderIndex, col) in colContainer.renderedColumns track by col.colDef.name" class="ui-grid-cell" ng-class="{ \'ui-grid-row-header-cell\': col.isRowHeader }"  ui-grid-cell></div>' +
-	                 '</div>',
-	                 
-	                 columnDefs:[
-	                             {
-	                                field: 'Snum',
-	                                displayName: "Snum",
-	                                            },
-	                                {
-	                                field: 'TradeId'
-	                              }
-	                          ],
-	        }
-	   
-	   
-	   $scope.rowFormatter = function( row ) {
-		    console.log(row);
-		    return row.entity.TradeId === '101'; 
-		  };*/
-			 
+		 
 	//   $scope.filterData = angular.copy($scope.myData, []);
 	  //binding data to grid 
 	// 	$scope.gridOptions = { data: 'filterData',filterOptions: $scope.filteroptions };
 	  
 	  	
-			  
-			  
-			
-			  
-	  	
+		
 	  	//reset function
 	    $scope.reset=function()
 	       {
